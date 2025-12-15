@@ -1,0 +1,121 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About — My Web Page</title>
+    <style>
+      :root{
+        --hero-img: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80');
+        --page-bg: url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1600&q=80');
+      }
+      body{font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;margin:0;color:#0b1220}
+      header.hero{background-image:linear-gradient(rgba(3,7,18,0.45),rgba(3,7,18,0.45)),var(--hero-img);background-size:cover;background-position:center;color:#fff;min-height:36vh;display:flex;align-items:center}
+      nav{background:rgba(241,245,249,0.9)}
+      nav ul{list-style:none;padding:0;margin:0;display:flex;gap:1rem}
+      nav a{color:#0b5cff;text-decoration:none}
+      .container{max-width:900px;margin:0 auto;padding:1rem}
+      .card{background:rgba(255,255,255,0.9);padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+      .company-details p{margin:.25rem 0}
+      form{display:grid;gap:.5rem}
+      label{font-weight:600}
+      input,textarea,select{padding:.5rem;border:1px solid #d1d5db;border-radius:6px;font:inherit}
+      button{background:#0b5cff;color:#fff;padding:.6rem 1rem;border:0;border-radius:6px;cursor:pointer}
+      .status{margin-top:.5rem;color:green;font-weight:600}
+      footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:1rem}
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>About Our Company</h1>
+        <p>We build great products and care about customer feedback.</p>
+      </div>
+    </header>
+
+    <nav aria-label="Primary navigation">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="card company-details" aria-labelledby="company-heading">
+        <h2 id="company-heading">Company Information</h2>
+        <p><strong>Company:</strong> Acme Widgets Inc.</p>
+        <p><strong>Address:</strong> 123 Example Street, Springfield, USA</p>
+        <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+        <p><strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+        <p><strong>Hours:</strong> Mon–Fri, 9:00am–5:00pm</p>
+      </section>
+
+      <section class="card" style="margin-top:1rem;" aria-labelledby="feedback-heading">
+        <h2 id="feedback-heading">Customer Feedback</h2>
+        <form id="feedback-form" novalidate>
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" />
+          </div>
+          <div>
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating">
+              <option>5 — Excellent</option>
+              <option>4 — Good</option>
+              <option>3 — Okay</option>
+              <option>2 — Poor</option>
+              <option>1 — Terrible</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <div>
+            <label><input type="checkbox" id="consent" required /> I consent to having this information stored.</label>
+          </div>
+          <div>
+            <button type="submit">Send Feedback</button>
+          </div>
+          <div id="form-status" class="status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; <span id="year">2025</span> Acme Widgets Inc.</p>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        document.getElementById('year').textContent = new Date().getFullYear();
+        var form = document.getElementById('feedback-form');
+        var status = document.getElementById('form-status');
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (!form.reportValidity) { /* modern browsers will show validation */ }
+          // Simulate successful submission
+          status.textContent = 'Thank you — your feedback has been received.';
+          form.reset();
+          // Remove message after 4s
+          setTimeout(function(){ status.textContent = ''; }, 4000);
+        });
+      })();
+    </script>
+  </body>
+</html>

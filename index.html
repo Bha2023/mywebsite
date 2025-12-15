@@ -1,0 +1,98 @@
+
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>My Web Page</title>
+		<style>
+			:root {
+				--hero-img: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+				--features-img: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1600&q=80');
+				--footer-img: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80');
+			}
+			body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; margin: 0; line-height: 1.5; }
+			header, nav, main, section, footer { padding: 1rem; }
+			header { background: #0b5cff; color: white; }
+			/* hero header with background image and overlay */
+			header.hero {
+				background-image: linear-gradient(rgba(6,12,34,0.45), rgba(6,12,34,0.45)), var(--hero-img);
+				background-size: cover;
+				background-position: center;
+				color: #fff;
+				min-height: 36vh;
+				display: flex;
+				align-items: center;
+				position: relative;
+			}
+			.page-status { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.95); color: #0b5cff; padding: 0.25rem 0.5rem; border-radius: 4px; transform: translateY(-8px); opacity: 0; transition: opacity 200ms, transform 200ms; }
+			.page-status.show { opacity: 1; transform: translateY(0); }
+			nav { background: rgba(241,245,249,0.9); }
+			nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 1rem; }
+			nav a { color: #0b5cff; text-decoration: none; }
+			.container { max-width: 900px; margin: 0 auto; }
+			/* features section background */
+			#features { background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), var(--features-img); background-size: cover; background-position: center; border-radius: 8px; padding: 2rem; margin-top: 1rem; }
+			footer { background: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.9)), var(--footer-img); color: #cbd5e1; text-align: center; background-size: cover; background-position: center; }
+			@media (min-width:700px) { nav ul { gap: 2rem; } }
+		</style>
+	</head>
+	<body>
+		<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
+		<header class="hero">
+			<div class="container">
+				<h1>My Web Page</h1>
+				<p>Do or die</p>
+				<div id="page-status" role="status" aria-live="polite" class="page-status" aria-hidden="true"></div>
+			</div>
+		</header>
+
+		<nav aria-label="Primary navigation">
+			<div class="container">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="#services">Services</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<main id="main" class="container">
+			<section id="home">
+				<h2>Welcome</h2>
+				<p>This is my first webpage using vs and copilot <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, and <code>footer</code>.</p>
+			</section>
+
+			<section id="features">
+				<h2>Features</h2>
+				<p>Very easy and quickly we can create web pages.</p>
+			</section>
+		</main>
+
+		<footer>
+			<div class="container">
+				<p>&copy; <span id="year"></span> Your Company — All rights reserved.</p>
+			</div>
+		</footer>
+
+		<script>
+			document.getElementById('year').textContent = new Date().getFullYear();
+
+			window.addEventListener('load', function () {
+				var status = document.getElementById('page-status');
+				if (!status) return;
+				status.textContent = 'Page Loaded Successfully';
+				status.setAttribute('aria-hidden', 'false');
+				status.classList.add('show');
+				// Hide after 3 seconds
+				setTimeout(function () {
+					status.classList.remove('show');
+					status.setAttribute('aria-hidden', 'true');
+				}, 3000);
+			});
+		</script>
+	</body>
+</html>
+

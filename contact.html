@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — My Web Page</title>
+    <style>
+      :root{--hero-img:url('https://images.unsplash.com/photo-1496284045406-d3e0b918d3b9?auto=format&fit=crop&w=1600&q=80')}
+      body{font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;margin:0;color:#0b1220}
+      header.hero{background-image:linear-gradient(rgba(3,7,18,0.45),rgba(3,7,18,0.45)),var(--hero-img);background-size:cover;background-position:center;color:#fff;min-height:28vh;display:flex;align-items:center}
+      nav{background:rgba(241,245,249,0.9)}
+      nav ul{list-style:none;padding:0;margin:0;display:flex;gap:1rem}
+      nav a{color:#0b5cff;text-decoration:none}
+      .container{max-width:900px;margin:0 auto;padding:1rem}
+      .card{background:rgba(255,255,255,0.95);padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+      .contact-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+      @media(min-width:700px){.contact-grid{grid-template-columns:1fr 1fr}}
+      .map{min-height:200px;border-radius:8px;overflow:hidden}
+      address{font-style:normal}
+      footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:1rem;margin-top:1rem}
+      a.phone{display:inline-block;margin-top:.25rem;color:#0b5cff}
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>We're happy to help — reach out any time.</p>
+      </div>
+    </header>
+
+    <nav aria-label="Primary navigation">
+      <div class="container">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="card contact-grid" aria-labelledby="contact-heading">
+        <div>
+          <h2 id="contact-heading">Get in touch</h2>
+          <p>For general inquiries, press or support, use the details below or send us a message using the form.</p>
+
+          <p><strong>Phone</strong><br/><a class="phone" href="tel:+1234567890">+1 (234) 567-890</a></p>
+          <p><strong>Email</strong><br/><a href="mailto:contact@example.com">contact@example.com</a></p>
+          <p><strong>Address</strong><br/>
+            <address>
+              Acme Widgets Inc.<br/>
+              123 Example Street<br/>
+              Springfield, State 12345<br/>
+              United States
+            </address>
+          </p>
+
+          <form id="contact-form">
+            <div>
+              <label for="c-name">Name</label><br/>
+              <input id="c-name" name="name" type="text" required>
+            </div>
+            <div>
+              <label for="c-email">Email</label><br/>
+              <input id="c-email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="c-message">Message</label><br/>
+              <textarea id="c-message" name="message" rows="5" required></textarea>
+            </div>
+            <div>
+              <button type="submit">Send Message</button>
+            </div>
+            <div id="c-status" role="status" aria-live="polite" style="margin-top:.5rem;color:green;font-weight:600"></div>
+          </form>
+        </div>
+
+        <div>
+          <h3>Our location</h3>
+          <div class="map card">
+            <!-- Simple embed; replace src with your location if desired -->
+            <iframe width="100%" height="100%" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=40.712776,-74.005974&z=14&output=embed" allowfullscreen></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; <span id="year"></span> Acme Widgets Inc.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.getElementById('contact-form').addEventListener('submit', function(e){
+        e.preventDefault();
+        document.getElementById('c-status').textContent = 'Thanks — we will get back to you shortly.';
+        this.reset();
+        setTimeout(function(){ document.getElementById('c-status').textContent = ''; }, 4000);
+      });
+    </script>
+  </body>
+</html>
